@@ -1,19 +1,17 @@
 # rspc_server
-Intel RealSense Pointcloud Server
+*Intel RealSense Pointcloud Server*
 
-
-
-This is a lightweight python script that process Realsense depth frame in real time. It converts the frame into a point cloud that can be retrieved on-demand via a websocket interface.
+This is a lightweight python script that process Realsense depth frame in real time. It converts the frame into a point cloud that can be retrieved on-demand via a websocket interface. The intended use of this script is for occasional point cloud retrieval with minimal latency, although high frequency use is possible.
 
 **Websocket Interface** allows any applications such as Rhino Python, Python within Grasshopper or any other scripts to retrieve the point cloud. The point cloud is encoded in json format as a list of [x,y,z] values.
 
 **Buffering and retrieval** The script polls the sensor for a frame at 15fps (alternatively 30 / 60fps). The script process and keep the latest frame in buffer for low-latency on-demand retrieval via websocket. 
 
-The intended use of this script is for occasional point cloud retrieval, although high frequency use is possible.
+**Filtering** Realsense SDK built-in Temporal Filter is a applied for smoother result. Decimation Filter (reduce points) is applied with configurable magnitude (default = 2) to reduce the amount of points retrieved. This can improve computational performance for some downstream operations. Refer to [this post-processing-filter guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/post-processing-filters.md) by Intel.
 
-**Filtering** Realsense SDK built-in Temporal Filter is a applied for smoother result. Decimation Filter (reduce points) is applied with configurable magnitude (default = 2) to reduce the amount of points retrieved. This can improve performance for some downstream operations. 
+**Advanced Settings** If you use the Intel RealSense Viewer, you can change the device settings and get different results (such as higher accuracy in the expanse of more dropped points). These settings can be saved to a json file via the user interface in the Intel RealSense Viewer. This can be loaded by the script. Default is "HighAccuracy". Refer to [this preset guide](https://github.com/IntelRealSense/librealsense/wiki/D400-Series-Visual-Presets) by Intel where you can also download other premade json.
 
-**Advanced Settings** If you use the Intel RealSense Viewer, you can change the device settings and get different results (such as higher accuracy in the expanse of more dropped points). These settings can be saved to a json file via the user interface in the Intel RealSense Viewer. This can be loaded by the script. Default is "HighAccuracy".
+**Origin and Scale** The retrieved point cloud is located in a Cartesian coordinate frame where the origin is located at the left camera of the sensor. The scale is meters by device default. Refer to [this guide](https://github.com/IntelRealSense/librealsense/wiki/Projection-in-RealSense-SDK-2.0?language=en_US#point-coordinates) by Intel.
 
 ### Installation
 
