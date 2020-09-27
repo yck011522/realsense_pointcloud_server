@@ -70,3 +70,8 @@ The computation time is directly related to the number of points retrieved, this
 - pyrealsense2 2.38.1.2225
 - websockets 8.1
 
+#### Credit
+
+This script is inspired by [ilmihur/depthscanner](https://github.com/ilmihur/depthscanner) and examples from [librealsense](https://github.com/IntelRealSense/librealsense/tree/master/wrappers/python/examples)
+
+Created by Pok Yin Victor Leung 
