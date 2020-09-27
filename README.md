@@ -1,4 +1,4 @@
-# rspc_server
+# realsense_pointcloud_server
 *Intel RealSense Pointcloud Server*
 
 This is a lightweight python script that process Realsense depth frame in real time. It converts the frame into a point cloud that can be retrieved on-demand via a websocket interface. The intended use of this script is for occasional point cloud retrieval with minimal latency, although high frequency use is possible.
