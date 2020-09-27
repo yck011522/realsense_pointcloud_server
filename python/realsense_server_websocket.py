@@ -81,7 +81,7 @@ async def websocket_reply(websocket, path):
     received = await websocket.recv()
     try : 
         filter_magnitude = int(received)
-        if filter_magnitude > 0 and filter_magnitude < 12:
+        if filter_magnitude > 0 and filter_magnitude <= 8:
             decimate.set_option(rs.option.filter_magnitude, filter_magnitude)
     except ValueError  :
         pass
